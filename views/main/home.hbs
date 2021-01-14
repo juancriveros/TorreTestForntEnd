@@ -19,81 +19,39 @@
 </div>
 
 <div class="row p-5">
+  {{#each data.jobs}}
     <div class="col-4">
         <div class="card bg-dark text-white">
   <img src="/images/Developer.jpg" class="card-img" alt="...">
   <div class="card-img-overlay">
-    <h5 class="card-title">Software Development</h5>
-    <p class="card-text">2.990 jobs</p>
+    <h5 class="card-title">{{this.value}}</h5>
+    <p class="card-text">{{this.total}} jobs</p>
     <p class="card-text">
         <a href="#" class="torre-color">Ver mas</a>
     </p>
   </div>
 </div>
     </div>
-    <div class="col-4">
-        <div class="card bg-dark text-white">
-  <img src="/images/Developer.jpg" class="card-img" alt="...">
-  <div class="card-img-overlay">
-    <h5 class="card-title">Marketing</h5>
-    <p class="card-text">1.840 jobs</p>
-    <p class="card-text">
-        <a href="#" class="torre-color">Ver mas</a>
-    </p>
-  </div>
-</div>
-    </div>
-    <div class="col-4">
-        <div class="card bg-dark text-white">
-  <img src="/images/Developer.jpg" class="card-img" alt="...">
-  <div class="card-img-overlay">
-    <h5 class="card-title">Translations</h5>
-    <p class="card-text">1.180 jobs</p>
-    <p class="card-text">
-        <a href="#" class="torre-color">Ver mas</a>
-    </p>
-  </div>
-</div>
-    </div>
+    {{/each}}
+
 </div>
 
 <div class="row p-5">
+  {{#each data.users}}
     <div class="col-4">
         <div class="card bg-dark text-white">
   <img src="/images/Developer.jpg" class="card-img" alt="...">
   <div class="card-img-overlay">
-    <h5 class="card-title">Software Developers</h5>
-    <p class="card-text">1.590 persons</p>
+    <h5 class="card-title">{{this.value}}</h5>
+    <p class="card-text">{{this.total}} persons</p>
     <p class="card-text">
         <a href="#" class="torre-color">Ver mas</a>
     </p>
   </div>
 </div>
     </div>
-    <div class="col-4">
-        <div class="card bg-dark text-white">
-  <img src="/images/Developer.jpg" class="card-img" alt="...">
-  <div class="card-img-overlay">
-    <h5 class="card-title">Writers</h5>
-    <p class="card-text">1.100 persons</p>
-    <p class="card-text">
-        <a href="#" class="torre-color">Ver mas</a>
-    </p>
-  </div>
-</div>
-    </div>
-    <div class="col-4">
-        <div class="card bg-dark text-white">
-  <img src="/images/Developer.jpg" class="card-img" alt="...">
-  <div class="card-img-overlay">
-    <h5 class="card-title">Teachers</h5>
-    <p class="card-text">800 persons</p>
-    <p class="card-text">
-        <a href="#" class="torre-color">Ver mas</a>
-    </p>
-  </div>
-</div>
-    </div>
+    {{/each}}
+    
 </div>
     
   </body>
