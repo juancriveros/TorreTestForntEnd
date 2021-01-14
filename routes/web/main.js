@@ -8,7 +8,6 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
 Router.get('/', (req, res) => {
 
 
-    console.log("Ahora si")
     https.get('https://localhost:44317/home/summary', (resp) => {
     let data = '';
 
@@ -19,10 +18,9 @@ Router.get('/', (req, res) => {
 
     // The whole response has been received. Print out the result.
     resp.on('end', () => {
-        console.log("LLEGO");
-        console.log(JSON.parse(data));
         res.render('./main/home', {
-            data: JSON.parse(data)
+            data: JSON.parse(data),
+            isHome: false
         });
     });
 

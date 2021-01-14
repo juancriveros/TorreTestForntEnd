@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 
 const torreRouter = require('./routes/web/main')
+const torreSearchJobs = require('./routes/web/searchjobs')
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use(express.static(__dirname + '/node_modules/@fortawesome/fontawesome-free'));
 
 app.use('/torre', torreRouter)
+app.use('/torre/searchjobs', torreSearchJobs)
 
 
 

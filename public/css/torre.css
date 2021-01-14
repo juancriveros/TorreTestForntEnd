@@ -76,3 +76,22 @@ border-radius: 5px;
     background-repeat: no-repeat; 
     background-size: cover;
 }
+
+.result-div{
+  box-shadow: 0 9px 10px 10px black;
+}
+
+.page-item a {
+  color: #cddc39;
+}
+
+.page-link {
+  background-color: transparent;
+}
+
+.torre-btn{
+  border-color: #cddc39 !important;
+  background-color: #cddc39 !important;
+  color: #343a40 !important;
+  margin-bottom: 0px !important;
+}
