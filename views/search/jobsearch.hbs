@@ -73,52 +73,55 @@ body{
             <!-- BEGIN FILTER BY CATEGORY -->
             <div id="advanced-filters" class="collapse">
                 <h4>By category:</h4>
-                <div class="checkbox">
-                <label><input type="checkbox" class="icheck"> Application</label>
-                </div>
-                <div class="checkbox">
-                <label><input type="checkbox" class="icheck"> Design</label>
-                </div>
-                <div class="checkbox">
-                <label><input type="checkbox" class="icheck"> Desktop</label>
-                </div>
-                <div class="checkbox">
-                <label><input type="checkbox" class="icheck"> Management</label>
-                </div>
-                <div class="checkbox">
-                <label><input type="checkbox" class="icheck"> Mobile</label>
-                </div>
+                <select class="form-control" id="remoteSelect">
+                    <option value="default">Place based</option>
+                    <option value="true">Fully remote</option>
+                    <option value="false">Office based</option>
+                </select>
+                <select class="form-control" id="statusSelect">
+                    <option value="default">Status</option>
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
+                </select>
+                <select class="form-control" id="typeSelect">
+                    <option value="default">Type</option>
+                    <option value="freelance">Freelance</option>
+                    <option value="full-time">Full-time</option>
+                    <option value="part-time">Part-time</option>
+                </select>
+                
             
                 <!-- END FILTER BY CATEGORY -->
                 
                 <div class="padding"></div>
                 
-                <!-- BEGIN FILTER BY DATE -->
-                <h4>By date:</h4>
-                From
-                <div class="input-group date form_date" data-date="2014-06-14T05:25:07Z" data-date-format="dd-mm-yyyy" data-link-field="dtp_input1">
-                <input type="text" class="form-control">
-                <span class="input-group-addon bg-blue"><i class="fa fa-th"></i></span>
-                </div>
-                <input type="hidden" id="dtp_input1" value="">
-                
-                To
-                <div class="input-group date form_date" data-date="2014-06-14T05:25:07Z" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2">
-                <input type="text" class="form-control">
-                <span class="input-group-addon bg-blue"><i class="fa fa-th"></i></span>
-                </div>
-                <input type="hidden" id="dtp_input2" value="">
-                <!-- END FILTER BY DATE -->
+                <!-- BEGIN FILTER BY SALARY -->
+                <h4>By Salary:</h4>
+                <select class="form-control" id="currencySelect">
+                    <option value="default">Currency</option>
+                    <option value="USD$">USD</option>
+                    <option value="COP$">COP</option>
+                    <option value="EUR$">EUR</option>
+                </select>
+                <select class="form-control" id="periodicitySelect">
+                    <option value="default">Periodicity</option>
+                    <option value="hourly">Hour</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
+                </select>
+                <input class="form-control" type="number" id="amount" placeholder="Amount">
+                <!-- END FILTER BY SALARY -->
                 
                 <div class="padding"></div>
                 
-                <!-- BEGIN FILTER BY PRICE -->
-                <h4>By price:</h4>
-                Between <div id="price1">$300</div> to <div id="price2">$800</div>
-                <div class="slider-primary">
-                <div class="slider slider-horizontal" style="width: 152px;"><div class="slider-track"><div class="slider-selection" style="left: 30%; width: 50%;"></div><div class="slider-handle round" style="left: 30%;"></div><div class="slider-handle round" style="left: 80%;"></div></div><div class="tooltip top hide" style="top: -30px; left: 50.1px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">300 : 800</div></div><input type="text" class="slider" value="" data-slider-min="0" data-slider-max="1000" data-slider-step="1" data-slider-value="[300,800]" data-slider-tooltip="hide"></div>
-                </div>
-                <!-- END FILTER BY PRICE -->
+                <!-- BEGIN FILTER BY SKIILS -->
+                <h4>By Skill:</h4>
+                <input class="form-control" type="text" id="skill" placeholder="Skill">
+                <!-- END FILTER BY SKIILS -->
+
+                <div class="padding"></div>
+
+                 <a onclick="searchFilters()" class="btn my-2 torrebg-color pl-5 pr-5">Search</a>
             </div>
           </div>
           <!-- END FILTERS -->
@@ -128,93 +131,34 @@ body{
             <hr>
             <!-- BEGIN SEARCH INPUT -->
             <div class="input-group">
-              <input type="text" class="form-control" value="web development">
-              <button class="btn btn-primary torre-btn" type="button"><i class="fa fa-search"></i></button>
+              <input type="text" class="form-control" id="jobName" value="{{name}}">
+              <button class="btn btn-primary torre-btn" type="button" onclick="searchFilters()"><i class="fa fa-search"></i></button>
             </div>
+            <a onclick="resetFilters()" class="torre-color pr-5">Reset Filters</a>
             
             
-            <div class="padding"></div>
-            
-            <div class="row pt-5">
-              
-              <div class="col-md-6 ml-auto text-right text-white">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default active"><i class="fa fa-list"></i></button>
-                  <button type="button" class="btn btn-default"><i class="fa fa-th"></i></button>
-                </div>
-              </div>
-            </div>
             
             <!-- BEGIN TABLE RESULT -->
-            <div class="table-responsive">
-              <table class="table text-white">
-                <tbody><tr>
-                  <td class="number text-center">1</td>
-                  <td class="image"><img src="https://via.placeholder.com/400x300/FF8C00" alt=""></td>
-                  <td class="product"><strong>Product 1</strong><br>This is the product description.</td>
-                  <td class="rate text-right"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></span></td>
-                  <td class="price text-right">$350</td>
+            <div class="table-responsive pt-5">
+              <table class="table text-white" >
+                <tbody>
+                   {{#each data}}
+                    <tr>
+                  <td class="image"><img src="{{this.organizations.0.picture}}" alt=""></td>
+                  <td class="product"><strong>{{this.objective}}</strong><br>{{this.organizations.0.name}}</td>
+                  <td class="product">{{{ each_limit this.skills 3}}} <br> </td>
+                  <td class="product">{{this.compensation.data.minAmount}} - {{this.compensation.data.minAmount}} {{this.compensation.data.currency}}</td>
                 </tr>
-                <tr>
-                  <td class="number text-center">2</td>
-                  <td class="image"><img src="https://via.placeholder.com/400x300/5F9EA0" alt=""></td>
-                  <td class="product"><strong>Product 2</strong><br>This is the product description.</td>
-                  <td class="rate text-right"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></span></td>
-                  <td class="price text-right">$1,050</td>
-                </tr>
-                <tr>
-                  <td class="number text-center">3</td>
-                  <td class="image"><img src="https://via.placeholder.com/400x300" alt=""></td>
-                  <td class="product"><strong>Product 3</strong><br>This is the product description.</td>
-                  <td class="rate text-right"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></span></td>
-                  <td class="price text-right">$550</td>
-                </tr>
-                <tr>
-                  <td class="number text-center">4</td>
-                  <td class="image"><img src="https://via.placeholder.com/400x300/8A2BE2" alt=""></td>
-                  <td class="product"><strong>Product 4</strong><br>This is the product description.</td>
-                  <td class="rate text-right"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></span></td>
-                  <td class="price text-right">$330</td>
-                </tr>
-                <tr>
-                  <td class="number text-center">5</td>
-                  <td class="image"><img src="https://via.placeholder.com/400x300" alt=""></td>
-                  <td class="product"><strong>Product 5</strong><br>This is the product description.</td>
-                  <td class="rate text-right"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span></td>
-                  <td class="price text-right">$540</td>
-                </tr>
-                <tr>
-                  <td class="number text-center">6</td>
-                  <td class="image"><img src="https://via.placeholder.com/400x300/6495ED" alt=""></td>
-                  <td class="product"><strong>Product 6</strong><br>This is the product description.</td>
-                  <td class="rate text-right"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></span></td>
-                  <td class="price text-right">$870</td>
-                </tr>
-                <tr>
-                  <td class="number text-center">7</td>
-                  <td class="image"><img src="https://via.placeholder.com/400x300/DC143C" alt=""></td>
-                  <td class="product"><strong>Product 7</strong><br>This is the product description.</td>
-                  <td class="rate text-right"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></span></td>
-                  <td class="price text-right">$620</td>
-                </tr>
-                <tr>
-                  <td class="number text-center">8</td>
-                  <td class="image"><img src="https://via.placeholder.com/400x300/9932CC" alt=""></td>
-                  <td class="product"><strong>Product 8</strong><br>This is the product description.</td>
-                  <td class="rate text-right"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></span></td>
-                  <td class="price text-right">$1,550</td>
-                </tr>
+                {{/each}}
+                
               </tbody></table>
             </div>
             <!-- END TABLE RESULT -->
             
             <!-- BEGIN PAGINATION -->
             <ul class="pagination justify-content-center">
-              <li class="page-item"><a class="page-link" href="#">«</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">»</a></li>
+              <li class="page-item"><a class="page-link" href="/torre/searchjobs?page={{{previous_page page}}}&offset=0">«</a></li>
+              <li class="page-item"><a class="page-link" href="/torre/searchjobs?page={{{next_page page}}}&offset={{offset}}&name={{name}}">»</a></li>
             </ul>
             <!-- END PAGINATION -->
           </div>

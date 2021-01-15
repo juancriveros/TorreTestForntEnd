@@ -95,3 +95,7 @@ border-radius: 5px;
   color: #343a40 !important;
   margin-bottom: 0px !important;
 }
+
+.form-control{
+  margin-bottom: 20px;
+}
