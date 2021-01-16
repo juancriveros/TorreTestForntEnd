@@ -87,6 +87,7 @@ app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use(express.static(__dirname + '/node_modules/@fortawesome/fontawesome-free'));
 
 app.use('/torre', torreRouter)
+app.use('/', torreRouter)
 app.use('/torre/searchjobs', torreSearchJobs)
 app.use('/torre/searchemployees', torreSearchEmployees)
 app.use('/torre/userprofile', torreUserProfile)
@@ -104,3 +105,5 @@ app.use((req, res, next) => {
 app.listen(process.env.PORT, function () {
     console.log("Express started: Port " + process.env.PORT);
 })
+
+
