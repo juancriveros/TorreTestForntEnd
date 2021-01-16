@@ -10,6 +10,9 @@ const hbsHelpers = require('./helpers/handlebars');
 
 const torreRouter = require('./routes/web/main')
 const torreSearchJobs = require('./routes/web/searchjobs')
+const torreSearchEmployees = require('./routes/web/searchemployees')
+const torreUserProfile = require('./routes/web/userprofile')
+
 
 const app = express();
 
@@ -18,32 +21,41 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 app.engine('.hbs', exphbs({
-    extname: '.hbs', 
+    extname: '.hbs',
     defaultLayout: 'main',
     helpers: {
-        each_limit: function(ary, max, options) {
-            if(!ary || ary.length == 0)
+        each_limit: function (ary, max, options) {
+            if (!ary || ary.length == 0)
                 return "";
-        
-            var result = [ ];
-            for(var i = 0; i < max && i < ary.length; ++i)
+
+            var result = [];
+            for (var i = 0; i < max && i < ary.length; ++i)
                 result.push(ary[i].name);
 
             return result.join(' - ');
         },
 
-        next_page: function(page){
-            return parseInt(page) + 1;
+        getlink: function (nameLink, links) {
+
+            var url = "";
+            if (links.length > 0) {
+                links.forEach(element => {
+                    if (element.name == nameLink) {
+                        let username = element.address.split('/');
+                        url = username[username.length - 1];
+                    }
+                });
+            }
+
+            return url;
+
         },
-        
-        previous_page: function(page){
 
-            let pageNumber = parseInt(page);
-
-            if(pageNumber - 1 <= 0)
-                return 1;
+        date_format: function(fromMonth, fromYear, toMonth, toYear){
+            if(toMonth != null)
+                return fromMonth + " " + fromYear + " - " + toMonth + " " + toYear;
             else
-                return pageNumber-1;
+                return fromMonth + " " + fromYear
         }
     }
 }));
@@ -57,6 +69,9 @@ app.use(express.static(__dirname + '/node_modules/@fortawesome/fontawesome-free'
 
 app.use('/torre', torreRouter)
 app.use('/torre/searchjobs', torreSearchJobs)
+app.use('/torre/searchemployees', torreSearchEmployees)
+app.use('/torre/userprofile', torreUserProfile)
+
 
 
 app.use((req, res, next) => {

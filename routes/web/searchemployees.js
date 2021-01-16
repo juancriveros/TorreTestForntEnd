@@ -7,19 +7,19 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
 
 Router.get('/', (req, res) => {
     
-    let url = 'https://localhost:44317/opportunities/search?pageNumber=' + req.query.page + '&size=15&offset=' + req.query.offset
+    let url = 'https://localhost:44317/users/search?pageNumber=' + req.query.page + '&size=15&offset=' + req.query.offset
 
     if(req.query.name != undefined)
         url += '&name=' + req.query.name;
 
-    if(req.query.placeBased != undefined)
-        url += '&placeBased=' + req.query.placeBased
+    if(req.query.remoter != undefined)
+        url += '&remoter=' + req.query.remoter
 
-    if(req.query.status != undefined)
-        url += '&status=' + req.query.status
+    if(req.query.verified != undefined)
+        url += '&verified=' + req.query.verified
 
-    if(req.query.type != undefined)
-        url += '&type=' + req.query.type
+    if(req.query.opento != undefined)
+        url += '&opento=' + req.query.opento
 
     if(req.query.currency != undefined)
         url += '&currency=' + req.query.currency
@@ -45,8 +45,7 @@ Router.get('/', (req, res) => {
 
     // The whole response has been received. Print out the result.
     resp.on('end', () => {
-        console.log(resp.headers["x-offset"])
-        res.render('./search/jobsearch', {
+        res.render('./search/employeessearch', {
             data: JSON.parse(data),
             isHome: true,
             page: req.query.page ,
@@ -57,7 +56,7 @@ Router.get('/', (req, res) => {
 
     }).on("error", (err) => {
         console.log("Error: " + err);
-        res.render('./search/jobsearch', {
+        res.render('./search/employeessearch', {
             isHome: true
         });
     });

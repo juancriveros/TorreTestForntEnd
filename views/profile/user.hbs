@@ -1,0 +1,517 @@
+<style type="text/css">
+    body {
+        margin-top: 20px;
+        color: #1a202c;
+        text-align: left;
+        background-color: #e2e8f0;
+    }
+
+    .main-body {
+        padding: 15px;
+    }
+
+    .card {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0, 0, 0, .125);
+        border-radius: .25rem;
+    }
+
+    .card-body {
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1rem;
+    }
+
+    .gutters-sm {
+        margin-right: -8px;
+        margin-left: -8px;
+    }
+
+    .gutters-sm>.col,
+    .gutters-sm>[class*=col-] {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .mb-3,
+    .my-3 {
+        margin-bottom: 1rem !important;
+    }
+
+    .bg-gray-300 {
+        background-color: #e2e8f0;
+    }
+
+    .h-100 {
+        height: 100% !important;
+    }
+
+    .shadow-none {
+        box-shadow: none !important;
+    }
+
+    .badge-danger {
+        color: #fff;
+        background-color: #dc3545;
+    }
+
+    .badge-pill {
+        padding-right: .6em;
+        padding-left: .6em;
+        border-radius: 10rem;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: .25em .4em;
+        padding-right: 0.4em;
+        padding-left: 0.4em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        margin: 3px;
+    }
+
+    .timeline {
+        margin-bottom: 50px;
+        position: relative;
+    }
+
+    .timeline:before {
+        background-color: #dee2e6;
+        bottom: 0;
+        content: "";
+        left: 50%;
+        position: absolute;
+        top: 30px;
+        width: 2px;
+        z-index: 0;
+    }
+
+    .timeline .time-show {
+        margin-bottom: 30px;
+        margin-top: 30px;
+        position: relative;
+    }
+
+    .timeline .timeline-box {
+        background: #fff;
+        display: block;
+        margin: 15px 0;
+        position: relative;
+        padding: 20px;
+    }
+
+    .timeline .timeline-album {
+        margin-top: 12px;
+    }
+
+    .timeline .timeline-album a {
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .timeline .timeline-album img {
+        height: 36px;
+        width: auto;
+        border-radius: 3px;
+    }
+
+    @media (min-width: 768px) {
+        .timeline .time-show {
+            margin-right: -69px;
+            text-align: right;
+        }
+
+        .timeline .timeline-box {
+            margin-left: 45px;
+        }
+
+        .timeline .timeline-icon {
+            background: #dee2e6;
+            border-radius: 50%;
+            display: block;
+            height: 20px;
+            left: -54px;
+            margin-top: -10px;
+            position: absolute;
+            text-align: center;
+            top: 50%;
+            width: 20px;
+        }
+
+        .timeline .timeline-icon i {
+            color: #98a6ad;
+            font-size: 13px;
+            position: absolute;
+            left: 4px;
+        }
+
+        .timeline .timeline-desk {
+            display: table-cell;
+            vertical-align: top;
+            width: 50%;
+        }
+
+        .timeline-item {
+            display: table-row;
+        }
+
+        .timeline-item:before {
+            content: "";
+            display: block;
+            width: 50%;
+        }
+
+        .timeline-item .timeline-desk .arrow {
+            border-bottom: 12px solid transparent;
+            border-right: 12px solid #fff !important;
+            border-top: 12px solid transparent;
+            display: block;
+            height: 0;
+            left: -12px;
+            margin-top: -12px;
+            position: absolute;
+            top: 50%;
+            width: 0;
+        }
+
+        .timeline-item.timeline-item-left:after {
+            content: "";
+            display: block;
+            width: 50%;
+        }
+
+        .timeline-item.timeline-item-left .timeline-desk .arrow-alt {
+            border-bottom: 12px solid transparent;
+            border-left: 12px solid #fff !important;
+            border-top: 12px solid transparent;
+            display: block;
+            height: 0;
+            left: auto;
+            margin-top: -12px;
+            position: absolute;
+            right: -12px;
+            top: 50%;
+            width: 0;
+        }
+
+        .timeline-item.timeline-item-left .timeline-desk .album {
+            float: right;
+            margin-top: 20px;
+        }
+
+        .timeline-item.timeline-item-left .timeline-desk .album a {
+            float: right;
+            margin-left: 5px;
+        }
+
+        .timeline-item.timeline-item-left .timeline-icon {
+            left: auto;
+            right: -56px;
+        }
+
+        .timeline-item.timeline-item-left:before {
+            display: none;
+        }
+
+        .timeline-item.timeline-item-left .timeline-box {
+            margin-right: 45px;
+            margin-left: 0;
+            text-align: right;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .timeline .time-show {
+            text-align: center;
+            position: relative;
+        }
+
+        .timeline .timeline-icon {
+            display: none;
+        }
+    }
+
+    .timeline-sm {
+        padding-left: 110px;
+    }
+
+    .timeline-sm .timeline-sm-item {
+        position: relative;
+        padding-bottom: 20px;
+        padding-left: 40px;
+        border-left: 2px solid #dee2e6;
+    }
+
+    .timeline-sm .timeline-sm-item:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 3px;
+        left: -7px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #fff;
+        border: 2px solid #1abc9c;
+    }
+
+    @media (max-width: 420px) {
+        .timeline-sm {
+            padding-left: 0;
+        }
+
+        .timeline-sm .timeline-sm-date {
+            position: relative !important;
+            display: block;
+            left: 0 !important;
+            margin-bottom: 10px;
+        }
+    }
+
+    .tab-content {
+        padding: 20px 0 0 0;
+    }
+
+    .nav-pills .nav-link.active,
+    .nav-pills .show>.nav-link {
+        color: #fff;
+        background-color: #cddc39;
+    }
+
+    .nav-pills .nav-link {
+        border-radius: .25rem;
+    }
+
+    .navtab-bg li>a {
+        background-color: #f7f7f7;
+        margin: 0 5px;
+    }
+
+    .nav-pills>li>a,
+    .nav-tabs>li>a {
+        color: #6c757d;
+        font-weight: 600;
+    }
+
+    .dark-card {
+        box-shadow: 0 9px 10px 10px black;
+        background-color: #343a40 !important;
+    }
+
+    .list-group-item{
+        background-color: inherit;
+    }
+</style>
+</head>
+
+<body class="bg-dark">
+    <div class="container">
+        <div class="main-body">
+
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card dark-card text-white">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="{{data.info.picture}}" alt="Admin"
+                                    class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h4>{{data.info.name}}</h4>
+                                    <p>{{data.info.publicId}}</p>
+                                    <p class="font-size-sm">{{data.info.location.name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-3 dark-card text-white">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><i class="fas fa-globe"></i> Website</h6>
+                                <span class="text-secondary">{{{getlink "website" data.info.links}}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><i class="fab fa-github"></i> Github</h6>
+                                <span class="text-secondary">{{{getlink "github" data.info.links}}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><i class="fab fa-twitter"></i> Twitter</h6>
+                                <span class="text-secondary">{{{getlink "twitter" data.info.links}}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><i class="fab fa-instagram"></i> Instagram</h6>
+                                <span class="text-secondary">{{{getlink "instagram" data.info.links}}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><i class="fab fa-linkedin-in"></i> Linkedin</h6>
+                                <span class="text-secondary">{{{getlink "linkedin" data.info.links}}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card mb-3 dark-card text-white">
+                        <div class="card-body">
+                            <h5 class="text-center">{{data.info.professionalHeadline}}</h5>
+                            <p>{{data.info.summaryOfBio}}</p>
+                        </div>
+                    </div>
+                    <div class="row gutters-sm">
+                        <div class="col-sm-4 mb-3">
+                            <div class="card h-100 dark-card">
+                                <div class="card-body">
+                                    <h6 class="d-flex align-items-center mb-3"><i
+                                            class="material-icons text-info mr-2">Skills</i></h6>
+                                    {{#each data.strengths}}
+                                    <span class="badge badge-pill text-white font-medium torrebg-color mr-2">{{this.name}}</span>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <div class="card h-100 dark-card">
+                                <div class="card-body">
+                                    <h6 class="d-flex align-items-center mb-3"><i
+                                            class="material-icons text-info mr-2">Languages</i></h6>
+                                    {{#each data.languages}}
+                                    <span class="badge badge-pill text-white font-medium torrebg-color mr-2">{{this.languageName}}</span>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <div class="card h-100 dark-card">
+                                <div class="card-body">
+                                    <h6 class="d-flex align-items-center mb-3"><i
+                                            class="material-icons text-info mr-2">Interested in</i></h6>
+                                    {{#each data.interests}}       
+                                    <span class="badge badge-pill text-white font-medium torrebg-color mr-2">{{this.name}}</span>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-box dark-card mt-4 pb-3">
+                        <div class="mt-2">
+                        <ul class="nav nav-pills navtab-bg">
+                            <li class="nav-item">
+                                <a href="#experience" data-toggle="tab" aria-expanded="true" class="nav-link ml-0 active">
+                                    <i class="mdi mdi-face-profile mr-1"></i>Experience
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#projects" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                    <i class="mdi mdi-settings-outline mr-1"></i>Projects
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#publications" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                    <i class="mdi mdi-settings-outline mr-1"></i>Publications
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#education" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                    <i class="mdi mdi-settings-outline mr-1"></i>Education
+                                </a>
+                            </li>
+                        </ul>
+                        </div>
+                        <div class="tab-content text-white">
+
+                            <div class="tab-pane show active" id="experience">
+
+                                <h5 class="mb-4 text-uppercase"><i class="mdi mdi-briefcase mr-1"></i>
+                                    Experience</h5>
+
+                                <ul class="list-unstyled timeline-sm">
+                                    {{#each data.jobs}}
+                                    <li class="timeline-sm-item">
+                                        <span class="timeline-sm-date">{{{date_format this.fromMonth this.fromYear this.toMonth this.toYear}}}</span>
+                                        <h5 class="mt-0 mb-1">{{this.name}}</h5>
+                                        <p>{{this.organizations.0.name}}</p>
+                                        <p class="mt-2">{{this.responsibilities}}</p>
+
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                            <!-- end timeline content-->
+
+                            <div class="tab-pane" id="projects">
+                                <h5 class="mb-4 text-uppercase"><i class="mdi mdi-briefcase mr-1"></i>
+                                    Projects</h5>
+
+                                <ul class="list-unstyled timeline-sm">
+                                    {{#each data.projects}}
+                                    <li class="timeline-sm-item">
+                                        <span class="timeline-sm-date">{{{date_format this.fromMonth this.fromYear this.toMonth this.toYear}}}</span>
+                                        <h5 class="mt-0 mb-1">{{this.name}}</h5>
+                                        <p>{{this.organizations.0.name}}</p>
+                                        <p class="mt-2">{{this.responsibilities}}</p>
+
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+
+                            <div class="tab-pane" id="publications">
+                                <h5 class="mb-4 text-uppercase"><i class="mdi mdi-briefcase mr-1"></i>
+                                    Publications</h5>
+
+                                <ul class="list-unstyled timeline-sm">
+                                    {{#each data.publications}}
+                                    <li class="timeline-sm-item">
+                                        <span class="timeline-sm-date">{{{date_format this.fromMonth this.fromYear this.toMonth this.toYear}}}</span>
+                                        <h5 class="mt-0 mb-1">{{this.name}}</h5>
+                                        <p>{{this.organizations.0.name}}</p>
+                                        <p class="mt-2">{{this.responsibilities}}</p>
+
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+
+                            <div class="tab-pane" id="education">
+                                <h5 class="mb-4 text-uppercase"><i class="mdi mdi-briefcase mr-1"></i>
+                                    Education</h5>
+
+                                <ul class="list-unstyled timeline-sm">
+                                    {{#each data.education}}
+                                    <li class="timeline-sm-item">
+                                        <span class="timeline-sm-date">{{{date_format this.fromMonth this.fromYear this.toMonth this.toYear}}}</span>
+                                        <h5 class="mt-0 mb-1">{{this.name}}</h5>
+                                        <p>{{this.organizations.0.name}}</p>
+                                        <p class="mt-2">{{this.responsibilities}}</p>
+
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                            <!-- end settings content-->
+
+                        </div> <!-- end tab-content -->
+                    </div> <!-- end card-box-->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
