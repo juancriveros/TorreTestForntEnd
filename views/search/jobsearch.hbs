@@ -1,114 +1,118 @@
 <body class="bg-dark">
-<div class="container pt-5">
-<div class="row ">
-  <!-- BEGIN SEARCH RESULT -->
-  <div class="col-md-12 bg-dark result-div text-white">
-    <div class="grid search">
-      <div class="grid-body">
-        <div class="row">
-          <!-- BEGIN FILTERS -->
-          <div class="col-md-3">
-            <h2 class="grid-title"><a href="#advanced-filters" class="fa fa-filter torre-color" data-toggle="collapse">Filters</a> </h2>
-            <hr>
-            
-            <!-- BEGIN FILTER BY CATEGORY -->
-            <div id="advanced-filters" class="collapse">
-                <h4>By category:</h4>
-                <select class="form-control" id="remoteSelect">
+  <div class="container pt-5">
+    <div class="row ">
+      <!-- BEGIN SEARCH RESULT -->
+      <div class="col-md-12 bg-dark result-div text-white">
+        <div class="grid search">
+          <div class="grid-body">
+            <div class="row">
+              <!-- BEGIN FILTERS -->
+              <div class="col-md-3">
+                <h2 class="grid-title"><a href="#advanced-filters" class="fa fa-filter torre-color"
+                    data-toggle="collapse">Filters</a> </h2>
+                <hr>
+
+                <!-- BEGIN FILTER BY CATEGORY -->
+                <div id="advanced-filters" class="collapse">
+                  <h4>By category:</h4>
+                  <select class="form-control" id="remoteSelect">
                     <option value="default">Place based</option>
                     <option value="true">Fully remote</option>
                     <option value="false">Office based</option>
-                </select>
-                <select class="form-control" id="statusSelect">
+                  </select>
+                  <select class="form-control" id="statusSelect">
                     <option value="default">Status</option>
                     <option value="open">Open</option>
                     <option value="closed">Closed</option>
-                </select>
-                <select class="form-control" id="typeSelect">
+                  </select>
+                  <select class="form-control" id="typeSelect">
                     <option value="default">Type</option>
                     <option value="freelance">Freelance</option>
                     <option value="full-time">Full-time</option>
                     <option value="part-time">Part-time</option>
-                </select>
-                
-            
-                <!-- END FILTER BY CATEGORY -->
-                
-                <div class="padding"></div>
-                
-                <!-- BEGIN FILTER BY SALARY -->
-                <h4>By Salary:</h4>
-                <select class="form-control" id="currencySelect">
+                  </select>
+
+
+                  <!-- END FILTER BY CATEGORY -->
+
+                  <div class="padding"></div>
+
+                  <!-- BEGIN FILTER BY SALARY -->
+                  <h4>By Salary:</h4>
+                  <select class="form-control" id="currencySelect">
                     <option value="default">Currency</option>
                     <option value="USD$">USD</option>
                     <option value="COP$">COP</option>
                     <option value="EUR$">EUR</option>
-                </select>
-                <select class="form-control" id="periodicitySelect">
+                  </select>
+                  <select class="form-control" id="periodicitySelect">
                     <option value="default">Periodicity</option>
                     <option value="hourly">Hour</option>
                     <option value="monthly">Monthly</option>
                     <option value="yearly">Yearly</option>
-                </select>
-                <input class="form-control" type="number" id="amount" placeholder="Amount">
-                <!-- END FILTER BY SALARY -->
-                
-                <div class="padding"></div>
-                
-                <!-- BEGIN FILTER BY SKIILS -->
-                <h4>By Skill:</h4>
-                <input class="form-control" type="text" id="skill" placeholder="Skill">
-                <!-- END FILTER BY SKIILS -->
+                  </select>
+                  <input class="form-control" type="number" id="amount" placeholder="Amount">
+                  <!-- END FILTER BY SALARY -->
 
-                <div class="padding"></div>
+                  <div class="padding"></div>
 
-                 <a onclick="searchJobFilters()" class="btn my-2 torrebg-color pl-5 pr-5">Search</a>
+                  <!-- BEGIN FILTER BY SKIILS -->
+                  <h4>By Skill:</h4>
+                  <input class="form-control" type="text" id="skill" placeholder="Skill">
+                  <!-- END FILTER BY SKIILS -->
+
+                  <div class="padding"></div>
+
+                  <a onclick="searchJobFilters()" class="btn my-2 torrebg-color pl-5 pr-5">Search</a>
+                </div>
+              </div>
+              <!-- END FILTERS -->
+              <!-- BEGIN RESULT -->
+              <div class="col-md-9">
+                <h2><i class="torre-color fa fa-file-o"></i> Job Searchs</h2>
+                <hr>
+                <!-- BEGIN SEARCH INPUT -->
+                <div class="input-group">
+                  <input type="text" class="form-control" id="jobName" value="{{name}}">
+                  <button class="btn btn-primary torre-btn" type="button" onclick="searchJobFilters()"><i
+                      class="fa fa-search"></i></button>
+                </div>
+                <a onclick="resetJobFilters()" class="torre-color pr-5">Reset Filters</a>
+
+
+
+                <!-- BEGIN TABLE RESULT -->
+                <div class="table-responsive pt-5">
+                  <table class="table text-white">
+                    <tbody>
+                      {{#each data}}
+                      <tr onclick="jobProfile('{{this.id}}')">
+                        <td class=" image"><img src="{{this.organizations.0.picture}}" alt=""></td>
+                        <td class="product"><strong>{{this.objective}}</strong><br>{{this.organizations.0.name}}</td>
+                        <td class="product">{{{ each_limit this.skills 3}}} <br> </td>
+                        <td class="product">{{this.compensation.data.minAmount}} - {{this.compensation.data.minAmount}}
+                          {{this.compensation.data.currency}}</td>
+                      </tr>
+                      {{/each}}
+
+                    </tbody>
+                  </table>
+                </div>
+                <!-- END TABLE RESULT -->
+
+                <!-- BEGIN PAGINATION -->
+                <ul class="pagination justify-content-center">
+                  <li class="page-item"><a class="page-link" onclick="movePage({{page}}, false, {{offset}})">«</a></li>
+                  <li class="page-item"><a class="page-link" onclick="movePage({{page}}, true, {{offset}})">»</a></li>
+                </ul>
+                <!-- END PAGINATION -->
+              </div>
+              <!-- END RESULT -->
             </div>
           </div>
-          <!-- END FILTERS -->
-          <!-- BEGIN RESULT -->
-          <div class="col-md-9">
-            <h2><i class="torre-color fa fa-file-o"></i> Job Searchs</h2>
-            <hr>
-            <!-- BEGIN SEARCH INPUT -->
-            <div class="input-group">
-              <input type="text" class="form-control" id="jobName" value="{{name}}">
-              <button class="btn btn-primary torre-btn" type="button" onclick="searchJobFilters()"><i class="fa fa-search"></i></button>
-            </div>
-            <a onclick="resetJobFilters()" class="torre-color pr-5">Reset Filters</a>
-            
-            
-            
-            <!-- BEGIN TABLE RESULT -->
-            <div class="table-responsive pt-5">
-              <table class="table text-white" >
-                <tbody>
-                   {{#each data}}
-                    <tr>
-                  <td class="image"><img src="{{this.organizations.0.picture}}" alt=""></td>
-                  <td class="product"><strong>{{this.objective}}</strong><br>{{this.organizations.0.name}}</td>
-                  <td class="product">{{{ each_limit this.skills 3}}} <br> </td>
-                  <td class="product">{{this.compensation.data.minAmount}} - {{this.compensation.data.minAmount}} {{this.compensation.data.currency}}</td>
-                </tr>
-                {{/each}}
-                
-              </tbody></table>
-            </div>
-            <!-- END TABLE RESULT -->
-            
-            <!-- BEGIN PAGINATION -->
-            <ul class="pagination justify-content-center">
-              <li class="page-item"><a class="page-link" onclick="movePage({{page}}, false, {{offset}})">«</a></li>
-              <li class="page-item"><a class="page-link" onclick="movePage({{page}}, true, {{offset}})">»</a></li>
-            </ul>
-            <!-- END PAGINATION -->
-          </div>
-          <!-- END RESULT -->
         </div>
       </div>
+      <!-- END SEARCH RESULT -->
     </div>
   </div>
-  <!-- END SEARCH RESULT -->
-</div>
-</div>
 </body>

@@ -71,7 +71,7 @@
 
                   <div class="padding"></div>
 
-                  <a onclick="searchFilters()" class="btn my-2 torrebg-color pl-5 pr-5">Search</a>
+                  <a onclick="searchUserFilters()" class="btn my-2 torrebg-color pl-5 pr-5">Search</a>
                 </div>
               </div>
               <!-- END FILTERS -->
@@ -85,7 +85,7 @@
                   <button class="btn btn-primary torre-btn" type="button" onclick="searchUsersFilters()"><i
                       class="fa fa-search"></i></button>
                 </div>
-                <a onclick="resetUsersFilters()" class="torre-color pr-5">Reset Filters</a>
+                <a onclick="resetUserFilters()" class="torre-color pr-5">Reset Filters</a>
 
 
 
@@ -98,7 +98,7 @@
                         <td class="image"><img src="{{this.picture}}" alt=""></td>
                         <td class="product"><strong>{{this.name}}</strong><br>{{this.professionalHeadline}}</td>
                         <td class="product">{{{ each_limit this.skills 3}}} <br> </td>
-                        <td class="product">{{{ each_limit this.openTo 3}}}</td>
+                        <td class="product">{{{ join_string this.openTo 3}}}</td>
                       </tr>
                       {{/each}}
 
@@ -112,7 +112,7 @@
                   <li class="page-item"><a class="page-link"
                       onclick="movePage({{page}}, false, {{offset}})">«</a></li>
                   <li class="page-item"><a class="page-link"
-                      onclick="movePage({{page}}, false, {{offset}})">»</a></li>
+                      onclick="movePage({{page}}, true, {{offset}})">»</a></li>
                 </ul>
                 <!-- END PAGINATION -->
               </div>

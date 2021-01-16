@@ -12,6 +12,7 @@ const torreRouter = require('./routes/web/main')
 const torreSearchJobs = require('./routes/web/searchjobs')
 const torreSearchEmployees = require('./routes/web/searchemployees')
 const torreUserProfile = require('./routes/web/userprofile')
+const torreJobProfile = require('./routes/web/jobprofile')
 
 
 const app = express();
@@ -24,13 +25,24 @@ app.engine('.hbs', exphbs({
     extname: '.hbs',
     defaultLayout: 'main',
     helpers: {
-        each_limit: function (ary, max, options) {
+        each_limit: function (ary, max) {
             if (!ary || ary.length == 0)
                 return "";
 
             var result = [];
             for (var i = 0; i < max && i < ary.length; ++i)
                 result.push(ary[i].name);
+
+            return result.join(' - ');
+        },
+
+        join_string: function (arrayString, max) {
+            if (arrayString.length == 0)
+                return "";
+
+            var result = [];
+            for (var i = 0; i < max && i < arrayString.length; ++i)
+                result.push(arrayString[i]);
 
             return result.join(' - ');
         },
@@ -51,11 +63,18 @@ app.engine('.hbs', exphbs({
 
         },
 
-        date_format: function(fromMonth, fromYear, toMonth, toYear){
-            if(toMonth != null)
+        date_format: function (fromMonth, fromYear, toMonth, toYear) {
+            if (toMonth != null)
                 return fromMonth + " " + fromYear + " - " + toMonth + " " + toYear;
             else
                 return fromMonth + " " + fromYear
+        },
+
+        check_picture: function (source) {
+            if (source == null || source == "")
+                return "/images/Default.jpg";
+            else
+                return source
         }
     }
 }));
@@ -71,6 +90,7 @@ app.use('/torre', torreRouter)
 app.use('/torre/searchjobs', torreSearchJobs)
 app.use('/torre/searchemployees', torreSearchEmployees)
 app.use('/torre/userprofile', torreUserProfile)
+app.use('/torre/jobprofile', torreJobProfile)
 
 
 

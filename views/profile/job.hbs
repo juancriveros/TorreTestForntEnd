@@ -1,0 +1,210 @@
+<style type="text/css">
+    .single_advisor_profile {
+        position: relative;
+        margin-bottom: 5px;
+        -webkit-transition-duration: 500ms;
+        transition-duration: 500ms;
+        z-index: 1;
+        border-radius: 15px;
+        -webkit-box-shadow: 0 0.25rem 1rem 0 rgba(47, 91, 234, 0.125);
+        box-shadow: 0 0.25rem 1rem 0 rgba(47, 91, 234, 0.125);
+        word-break: break-word;
+        width: 210px;
+    }
+
+    .single_advisor_profile .advisor_thumb {
+        position: relative;
+        z-index: 1;
+        border-radius: 15px 15px 0 0;
+        margin: 0 auto;
+        padding: 30px 30px 0 30px;
+        background-color: #3f43fd;
+        overflow: hidden;
+    }
+
+
+    @media only screen and (max-width: 575px) {
+        .single_advisor_profile .advisor_thumb::after {
+            height: 160px;
+            bottom: -90px;
+        }
+    }
+
+    .single_advisor_profile .advisor_thumb .social-info {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        bottom: 0;
+        right: 30px;
+        text-align: right;
+    }
+
+    .single_advisor_profile .advisor_thumb .social-info a {
+        font-size: 14px;
+        color: #020710;
+        padding: 0 5px;
+    }
+
+    .single_advisor_profile .advisor_thumb .social-info a:hover,
+    .single_advisor_profile .advisor_thumb .social-info a:focus {
+        color: #3f43fd;
+    }
+
+    .single_advisor_profile .advisor_thumb .social-info a:last-child {
+        padding-right: 0;
+    }
+
+    .single_advisor_profile .single_advisor_details_info {
+        position: relative;
+        z-index: 1;
+        padding: 30px;
+        text-align: right;
+        -webkit-transition-duration: 500ms;
+        transition-duration: 500ms;
+        border-radius: 0 0 15px 15px;
+        background-color: #cddc39;
+    }
+
+    .single_advisor_profile .single_advisor_details_info::after {
+        -webkit-transition-duration: 500ms;
+        transition-duration: 500ms;
+        position: absolute;
+        z-index: 1;
+        width: 50px;
+        height: 3px;
+        background-color: #cddc39;
+        content: "";
+        top: 12px;
+        right: 30px;
+    }
+
+    .single_advisor_profile .single_advisor_details_info h6 {
+        margin-bottom: 0.25rem;
+        -webkit-transition-duration: 500ms;
+        transition-duration: 500ms;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .single_advisor_profile .single_advisor_details_info h6 {
+            font-size: 14px;
+        }
+    }
+
+    .single_advisor_profile .single_advisor_details_info p {
+        -webkit-transition-duration: 500ms;
+        transition-duration: 500ms;
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .single_advisor_profile .single_advisor_details_info p {
+            font-size: 12px;
+        }
+    }
+
+    .single_advisor_profile:hover .advisor_thumb::after,
+    .single_advisor_profile:focus .advisor_thumb::after {
+        background-color: #cddc39;
+    }
+
+    .single_advisor_profile:hover .single_advisor_details_info,
+    .single_advisor_profile:focus .single_advisor_details_info {
+        background-color: #cddc39;
+    }
+
+    .single_advisor_details_info {
+        min-height: 126px;
+    }
+
+    .overflow-x {
+        overflow-x: auto;
+    }
+</style>
+
+<body class="bg-dark">
+    <div class="container text-white">
+        <div class="page-heading dark-card mt-3">
+            <div class="media clearfix">
+                <div class="media-left pr30">
+                    <a href="#">
+                        <img class="media-object mw150" src="{{{check_picture data.organizations.0.picture}}}" alt="...">
+                    </a>
+                </div>
+                <div class="media-body va-m text-center">
+                    <h2 class="media-heading ">{{data.objective}}
+                    </h2>
+                    <p class="lead">{{data.organizations.0.name}}</p>
+                    <p class="lead">{{data.compensations.0.minAmount}} - {{data.compensations.0.maxAmount}}
+                        {{data.compensations.0.currecy}}</p>
+                    <p class="lead">{{data.place.location.0.id}}</p>
+                    <p class="lead">Remote: {{data.place.remote}}</p>
+                </div>
+            </div>
+        </div>
+        <div class=" mt-5 mb-5">
+            <h4>Members</h4>
+            <br>
+            <div class="d-flex overflow-x">
+                {{#each data.members}}
+                <div class="single_advisor_profile wow fadeInUp mr-3 h-100" data-wow-delay="0.2s"
+                    style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                    <!-- Team Thumb-->
+                    <div class="advisor_thumb"><img src="{{{check_picture this.person.pictureThumbnail}}}" alt="">
+                    </div>
+                    <!-- Team Details-->
+                    <div class="single_advisor_details_info">
+                        <h6>{{this.person.name}}</h6>
+                        <p class="designation">{{this.person.professionalHeadline}}</p>
+                    </div>
+                </div>
+                {{/each}}
+
+            </div>
+        </div>
+        
+        <div class="mb-5">
+            <h4>Skills</h4>
+            <div class="d-flex">
+                <div class="card h-100 dark-card w-100">
+                    <div class="card-body">
+                        {{#each data.strengths}}
+                        <span class="badge badge-pill text-white font-medium torrebg-color mr-2">{{this.name}}
+                            {{this.experience}}</span>
+                        {{/each}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mb-5">
+            <h4>Languages</h4>
+            <div class="d-flex">
+                <div class="card h-100 dark-card w-100">
+                    <div class="card-body">
+                        {{#each data.languages}}
+                        <span class="badge badge-pill text-white font-medium torrebg-color mr-2">{{this.language.name}}
+                            {{this.fluency}}</span>
+                        {{/each}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mb-5">
+            {{#each data.details}}
+            <h4>{{this.code}}</h4>
+            <div class="d-flex mb-5">
+                <div class="card h-100 dark-card w-100">
+                    <div class="card-body">
+                        <p>{{this.content}}</p>
+                    </div>
+                </div>
+
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</body>

@@ -95,6 +95,11 @@ function resetJobFilters(){
 
 }
 
+function jobProfile(id){
+
+    window.location.href = "/torre/jobprofile?Id=" + id;
+
+}
 
 //Users
 function searchUserFilters(){
@@ -150,7 +155,7 @@ function initializeUserFilters(){
             if(name == "name")
                 $('#jobName').val(val);
 
-            if(name == "placeBased")
+            if(name == "placedBased")
                 $('#remoteSelect').val(val);
 
             if(name == "status")
@@ -200,8 +205,12 @@ function movePage(page, up, offset){
     var newPage = '';
     if(up)
         newPage = parseInt(page) + 1;
-    else
-        newPage = parseInt(page) - 1
+    else{
+        if(parseInt(page) - 1 <= 0)
+            newPage = 1;
+        else
+            newPage = parseInt(page) - 1
+    }
     
     var urlArray =  window.location.href.split('?')[1].split('&');
     
