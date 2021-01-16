@@ -1,6 +1,7 @@
 
 $( document ).ready(function() {
     initializeJobFilters();
+    initializeUserFilters()
 });
 
 //Jobs
@@ -120,13 +121,13 @@ function searchUserFilters(){
         url += '&name=' + name
 
     if(placeBased != "default")
-        url += '&placeBased=' + placeBased
+        url += '&remoter=' + placeBased
 
     if(status != "default")
-        url += '&status=' + status
+        url += '&verified=' + status
 
     if(type != "default")
-        url += '&type=' + type
+        url += '&openTo=' + type
 
     if(currency != "default")
         url += '&currency=' + currency
@@ -152,16 +153,19 @@ function initializeUserFilters(){
             let val = element.split('=')[1];
             let name = element.split('=')[0]
 
+            console.log(name)
+            console.log(val)
+
             if(name == "name")
                 $('#jobName').val(val);
 
-            if(name == "placedBased")
+            if(name == "remoter")
                 $('#remoteSelect').val(val);
 
-            if(name == "status")
+            if(name == "verified")
                 $('#statusSelect').val(val);
 
-            if(name == "type")
+            if(name == "openTo")
                 $('#typeSelect').val(val);
 
             if(name == "currency")

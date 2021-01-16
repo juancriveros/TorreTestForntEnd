@@ -18,8 +18,8 @@ Router.get('/', (req, res) => {
     if(req.query.verified != undefined)
         url += '&verified=' + req.query.verified
 
-    if(req.query.opento != undefined)
-        url += '&opento=' + req.query.opento
+    if(req.query.openTo != undefined)
+        url += '&opento=' + req.query.openTo
 
     if(req.query.currency != undefined)
         url += '&currency=' + req.query.currency
@@ -33,7 +33,7 @@ Router.get('/', (req, res) => {
     if(req.query.skill != undefined)
         url += '&skill=' + req.query.skill
 
-    
+    console.log(url)
 
     https.get(url , (resp) => {
     let data = '';

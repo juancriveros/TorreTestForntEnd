@@ -59,7 +59,7 @@
                     <option value="monthly">Monthly</option>
                     <option value="yearly">Yearly</option>
                   </select>
-                  <input class="form-control" type="number" id="amount" placeholder="Amount">
+                  <input class="form-control" type="number" id="amount" placeholder="AmountMax">
                   <!-- END FILTER BY SALARY -->
 
                   <div class="padding"></div>
@@ -77,12 +77,12 @@
               <!-- END FILTERS -->
               <!-- BEGIN RESULT -->
               <div class="col-md-9">
-                <h2><i class="torre-color fa fa-file-o"></i> Result</h2>
+                <h2><i class="torre-color fa fa-file-o"></i> Users Result</h2>
                 <hr>
                 <!-- BEGIN SEARCH INPUT -->
                 <div class="input-group">
                   <input type="text" class="form-control" id="jobName" value="{{name}}">
-                  <button class="btn btn-primary torre-btn" type="button" onclick="searchUsersFilters()"><i
+                  <button class="btn btn-primary torre-btn" type="button" onclick="searchUserFilters()"><i
                       class="fa fa-search"></i></button>
                 </div>
                 <a onclick="resetUserFilters()" class="torre-color pr-5">Reset Filters</a>
