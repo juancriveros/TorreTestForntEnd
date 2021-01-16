@@ -7,8 +7,10 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
 
 Router.get('/', (req, res) => {
 
+    var url = process.env.API_URL + '/home/summary'
+    console.log(url)
 
-    https.get('https://localhost:44317/home/summary', (resp) => {
+    https.get( url, (resp) => {
     let data = '';
 
     // A chunk of data has been received.

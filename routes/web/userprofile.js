@@ -7,7 +7,7 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
 
 Router.get('/', (req, res) => {
     
-    let url = 'https://localhost:44317/users/searchById?username=' + req.query.Id 
+    let url =  process.env.API_URL + '/users/searchById?username=' + req.query.Id 
 
     console.log(url)
 

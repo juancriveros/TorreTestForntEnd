@@ -2,6 +2,22 @@
 $( document ).ready(function() {
     initializeJobFilters();
     initializeUserFilters()
+
+    $('#jobName').keypress(function (e) {
+        var key = e.which;
+        if(key == 13)  // the enter key code
+         {
+           searchJobFilters();
+         }
+       });  
+
+       $('#userName').keypress(function (e) {
+        var key = e.which;
+        if(key == 13)  // the enter key code
+         {
+           searchUserFilters();
+         }
+       });  
 });
 
 //Jobs
@@ -105,7 +121,7 @@ function jobProfile(id){
 //Users
 function searchUserFilters(){
 
-    var name = $('#jobName').val();
+    var name = $('#userName').val();
     var placeBased = $('#remoteSelect').val();
     var status = $('#statusSelect').val();
     var type = $('#typeSelect').val();
@@ -157,7 +173,7 @@ function initializeUserFilters(){
             console.log(val)
 
             if(name == "name")
-                $('#jobName').val(val);
+                $('#userName').val(val);
 
             if(name == "remoter")
                 $('#remoteSelect').val(val);
@@ -186,7 +202,7 @@ function initializeUserFilters(){
 
 function resetUserFilters(){
 
-    $('#jobName').val('');
+    $('#userName').val('');
     $('#remoteSelect').val("default");
     $('#statusSelect').val("default");
     $('#typeSelect').val("default");
